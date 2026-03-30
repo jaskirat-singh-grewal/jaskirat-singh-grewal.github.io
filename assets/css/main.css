@@ -3116,7 +3116,7 @@ input, select, textarea {
 				#header.alt .logo img {
 					display: block;
 					margin: 0 auto;
-					max-width: 75%;
+					max-width: 10%;
 				}
 
 		@media screen and (max-width: 1280px) {
@@ -3807,21 +3807,4 @@ input, select, textarea {
 	    background-color: #2a2a2a !important;
 	    color: #ffffff !important;
 	    border-color: #444444 !important;
-	}
-	
-	/* --- 2. Logo Resizing --- */
-	/* Constrains the tremendously big logo to a reasonable size */
-	.logo img, 
-	#header .logo img, 
-	span.image.logo img {
-	    max-width: 150px !important; 
-	    height: auto !important;
-	    display: inline-block !important;
-	}
-	
-	/* --- 3. Remove HTML5 UP Reference --- */
-	/* Hides the design credit in the footer without deleting HTML */
-	#footer .copyright li:last-child,
-	a[href*="html5up.net"] {
-	    display: none !important;
 	}
