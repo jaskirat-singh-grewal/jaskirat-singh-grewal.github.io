@@ -1,16 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="85px" height="85px" viewBox="0 0 80 80" enable-background="new 0 0 80 80" xml:space="preserve">
-	<g>
-		<path fill="#FFFFFF" d="M40,0c22.091,0,40,17.909,40,40S62.091,80,40,80S0,62.091,0,40S17.909,0,40,0z"/>
-	</g>
-	<g>
-		<path fill="#8cc9f0" d="M50.378,32.576c0,1.005-0.815,1.821-1.821,1.821c-1.005,0-1.82-0.816-1.82-1.821
-			c0-1.005,0.815-1.821,1.82-1.821C49.563,30.755,50.378,31.571,50.378,32.576z M54.627,27.113c0-0.341-0.304-0.607-0.646-0.607
-			c-6.601,0-10.223,1.518-14.964,6.241c-1.081,1.1-2.2,2.352-3.338,3.699l-7.188,0.379c-0.19,0.019-0.379,0.133-0.493,0.304
-			l-4.249,7.284c-0.133,0.228-0.095,0.53,0.095,0.739l1.214,1.215c0.114,0.113,0.285,0.17,0.437,0.17c0.057,0,0.114,0,0.17-0.02
-			l5.235-1.611l5.33,5.33l-1.612,5.236c-0.057,0.209,0,0.437,0.152,0.606l1.214,1.214c0.133,0.114,0.284,0.171,0.436,0.171
-			c0.114,0,0.208-0.021,0.304-0.075l7.283-4.25c0.171-0.113,0.284-0.304,0.305-0.492l0.379-7.19c1.347-1.138,2.599-2.257,3.699-3.339
-			C52.882,37.603,54.627,33.411,54.627,27.113z"/>
-	</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+    <defs>
+        <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00C9FF" />
+            <stop offset="100%" stop-color="#92FE9D" />
+        </linearGradient>
+    </defs>
+    <g stroke="url(#aiGradient)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 70 L30 50 L50 35 L75 40 L90 60 L70 80 L40 70 Z" />
+        <path d="M50 35 L60 20 L85 25 L75 40" />
+        <path d="M30 50 L15 55 L20 75 L40 70" />
+        <path d="M90 60 L105 65 L95 85 L70 80" />
+        <path d="M50 35 L70 80" />
+        <path d="M30 50 L75 40" />
+        <path d="M40 70 L90 60" />
+    </g>
+    <g fill="url(#aiGradient)">
+        <circle cx="60" cy="20" r="4" />
+        <circle cx="85" cy="25" r="4" />
+        <circle cx="50" cy="35" r="5" />
+        <circle cx="75" cy="40" r="5" />
+        <circle cx="30" cy="50" r="5" />
+        <circle cx="15" cy="55" r="4" />
+        <circle cx="90" cy="60" r="5" />
+        <circle cx="105" cy="65" r="4" />
+        <circle cx="40" cy="70" r="5" />
+        <circle cx="20" cy="75" r="4" />
+        <circle cx="70" cy="80" r="5" />
+        <circle cx="95" cy="85" r="4" />
+    </g>
 </svg>
