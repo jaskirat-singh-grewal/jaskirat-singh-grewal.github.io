@@ -1,11 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
 
-/*
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -3783,3 +3778,50 @@ input, select, textarea {
 			}
 
 		}
+
+	/* ========================================= */
+	/* CUSTOM UPGRADES: DARK THEME & TWEAKS      */
+	/* ========================================= */
+	
+	/* --- 1. Darker Theme Background --- */
+	/* Changes the original pink/purple gradient to a sleek, dark charcoal */
+	body {
+	    background-color: #121212 !important;
+	    background-image: url("images/overlay.png"), linear-gradient(45deg, #1e1e1e 15%, #000000 85%) !important;
+	}
+	
+	/* Darkens the main content sections (which are normally white) */
+	#wrapper, #main, .wrapper, .box, #header, #footer {
+	    background-color: #1e1e1e !important;
+	    color: #cccccc !important;
+	    border-color: #333333 !important;
+	}
+	
+	/* Ensures headings and bold text pop against the dark background */
+	h1, h2, h3, h4, h5, h6, strong, b, header p {
+	    color: #ffffff !important;
+	}
+	
+	/* Darkens form inputs so they don't blind the user */
+	input, select, textarea {
+	    background-color: #2a2a2a !important;
+	    color: #ffffff !important;
+	    border-color: #444444 !important;
+	}
+	
+	/* --- 2. Logo Resizing --- */
+	/* Constrains the tremendously big logo to a reasonable size */
+	.logo img, 
+	#header .logo img, 
+	span.image.logo img {
+	    max-width: 150px !important; 
+	    height: auto !important;
+	    display: inline-block !important;
+	}
+	
+	/* --- 3. Remove HTML5 UP Reference --- */
+	/* Hides the design credit in the footer without deleting HTML */
+	#footer .copyright li:last-child,
+	a[href*="html5up.net"] {
+	    display: none !important;
+	}
