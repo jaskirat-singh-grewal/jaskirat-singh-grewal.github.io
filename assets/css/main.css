@@ -3329,42 +3329,52 @@ input, select, textarea {
 /* Main */
 
 	#main {
-		background-color: #ffffff;
-		color: #636363;
+		/* background-color: #ffffff;
+		color: #636363; */
+		background-color: #1e1e1e;
+	    color: #cccccc;
 		border-radius: 0.25em;
 	}
 
 		#main input, #main select, #main textarea {
-			color: #636363;
+			/* color: #636363;*/
+			color: #cccccc;
 		}
 
 		#main a:hover {
-			color: #636363;
+			/* color: #636363; */
+			color: #cccccc;
 		}
 
 		#main strong, #main b {
-			color: #636363;
+			/* color: #636363; */
+			color: #cccccc;
 		}
 
 		#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
-			color: #636363;
+			/* color: #636363; */
+			color: #cccccc;
 		}
 
 		#main blockquote {
-			border-left-color: #dddddd;
+			/* border-left-color: #dddddd; */
+			border-left-color: #333333;
 		}
 
 		#main code {
 			background: rgba(222, 222, 222, 0.25);
-			border-color: #dddddd;
+			/* border-color: #dddddd; */
+			border-color: #333333;
 		}
 
 		#main hr {
-			border-bottom-color: #dddddd;
+			/* border-bottom-color: #dddddd; */
+			border-bottom-color: #333333;
 		}
 
 		#main .box {
-			border-color: #dddddd;
+			/* border-color: #dddddd; */
+			border-color: #333333;
 		}
 
 		#main input[type="submit"],
