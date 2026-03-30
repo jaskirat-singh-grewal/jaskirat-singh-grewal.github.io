@@ -1,7 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
 
-
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -3116,7 +3115,7 @@ input, select, textarea {
 				#header.alt .logo img {
 					display: block;
 					margin: 0 auto;
-					max-width: 10%;
+					max-width: 15%;
 				}
 
 		@media screen and (max-width: 1280px) {
@@ -3331,50 +3330,40 @@ input, select, textarea {
 	#main {
 		background-color: #ffffff;
 		color: #636363;
-		/* background-color: #1e1e1e;
-	    color: #cccccc; */
 		border-radius: 0.25em;
 	}
 
 		#main input, #main select, #main textarea {
 			color: #636363;
-			/* color: #cccccc; */
 		}
 
 		#main a:hover {
 			color: #636363;
-			/* color: #cccccc; */
 		}
 
 		#main strong, #main b {
 			color: #636363;
-			/* color: #cccccc; */
 		}
 
 		#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
 			color: #636363;
-			/* color: #cccccc; */
 		}
 
 		#main blockquote {
 			border-left-color: #dddddd;
-			/* border-left-color: #333333; */
 		}
 
 		#main code {
 			background: rgba(222, 222, 222, 0.25);
 			border-color: #dddddd;
-			/* border-color: #333333; */
 		}
 
 		#main hr {
 			border-bottom-color: #dddddd;
-			/* border-bottom-color: #333333; */
 		}
 
 		#main .box {
 			border-color: #dddddd;
-			/* border-color: #333333; */
 		}
 
 		#main input[type="submit"],
@@ -3788,34 +3777,3 @@ input, select, textarea {
 			}
 
 		}
-
-	/* ========================================= */
-	/* CUSTOM UPGRADES: DARK THEME & TWEAKS      */
-	/* ========================================= */
-	
-	/* --- 1. Darker Theme Background --- */
-	/* Changes the original pink/purple gradient to a sleek, dark charcoal */
-
-	/* body {
-	    background-color: #121212 !important;
-	    background-image: url("images/overlay.png"), linear-gradient(45deg, #1e1e1e 15%, #000000 85%) !important;
-	} */
-	
-	/* Darkens the main content sections (which are normally white) */
-	/* #wrapper, #main, .wrapper, .box, #header, #footer {
-	    background-color: #1e1e1e !important;
-	    color: #cccccc !important;
-	    border-color: #333333 !important;
-	} */
-	
-	/* Ensures headings and bold text pop against the dark background */
-	/* h1, h2, h3, h4, h5, h6, strong, b, header p {
-	    color: #ffffff !important;
-	} */
-	
-	/* Darkens form inputs so they don't blind the user */
-	/* input, select, textarea {
-	    background-color: #2a2a2a !important;
-	    color: #ffffff !important;
-	    border-color: #444444 !important;
-	} */
