@@ -1,7 +1,13 @@
-/* ==========================================================================
+/* ═══════════════════════════════════════════════════════════════════════════
    additions.css — Visual enhancements for Jaskirat Singh Grewal's portfolio
    All new styles live here. Do NOT modify main.css (Stellar template).
-   ========================================================================== */
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Dark background override ──────────────────────────────────────────── */
+body {
+  background: #0a0a0a !important;
+  background-image: none !important;
+}
 
 /* ── Particles canvas ──────────────────────────────────────────────────── */
 canvas.tsParticles-canvas-el {

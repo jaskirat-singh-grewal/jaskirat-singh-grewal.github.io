@@ -1,47 +1,59 @@
 /**
- * particles-config.js — Interactive particle background
- * Colors chosen for high contrast against the pink-purple gradient.
+ * particles-config.js — Constellation Network Background
+ * Dark-mode multi-colored node network visualizing AI data flow.
+ * tsParticles v3 (loaded via CDN bundle in index.html)
  */
 (function() {
   if (typeof tsParticles === 'undefined') return;
 
   tsParticles.load('tsparticles', {
     fullScreen: { enable: true, zIndex: 0 },
-    background: { color: 'transparent' },
+    background: { color: '#0a0a0a' },
     fpsLimit: 60,
 
     particles: {
-      number: { value: 60, density: { enable: true } },
-      color: { value: ['#ffffff', '#e0e0e0', '#ffd700', '#f0e6ff', '#ffb6c1'] },
-      shape: { type: ['circle', 'star'], options: { star: { sides: 4, inset: 2 } } },
-      opacity: { value: { min: 0.4, max: 1 } },
-      size: { value: { min: 2, max: 6 } },
+      number: {
+        value: 70,
+        density: { enable: true }
+      },
+      color: {
+        value: ['#00FFFF', '#FF1493', '#FFD700']
+      },
+      shape: {
+        type: 'circle'
+      },
+      opacity: {
+        value: { min: 0.3, max: 0.8 }
+      },
+      size: {
+        value: { min: 1, max: 4 }
+      },
       links: {
         enable: true,
         distance: 150,
         color: '#ffffff',
-        opacity: 0.15,
-        width: 1
+        opacity: 0.25,
+        width: 1.2
       },
       move: {
         enable: true,
-        speed: 0.6,
+        speed: 1.2,
         direction: 'none',
         random: true,
+        straight: false,
         outModes: { default: 'out' }
       }
     },
 
     interactivity: {
       detectsOn: 'window',
-      events: { onHover: { enable: true, mode: 'bubble' } },
+      events: {
+        onHover: { enable: true, mode: 'repulse' },
+        onClick: { enable: true, mode: 'push' }
+      },
       modes: {
-        bubble: {
-          distance: 150,
-          size: 14,
-          duration: 0.4,
-          opacity: 1
-        }
+        repulse: { distance: 120, duration: 0.4, speed: 1 },
+        push:   { quantity: 4 }
       }
     },
 
