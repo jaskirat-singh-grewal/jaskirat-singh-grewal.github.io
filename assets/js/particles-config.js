@@ -1,67 +1,203 @@
 /**
- * particles-config.js — Constellation Network Background
- * Dark-mode multi-colored node network visualizing AI data flow.
- * tsParticles v3 (loaded via CDN bundle in index.html)
+ * constellation-network.js — Pure vanilla particle constellation background
+ * Zero dependencies. Dark-mode multi-colored node network with interactivity.
+ * Colors: cyan #00FFFF, hot pink #FF1493, gold #FFD700
  */
 (function() {
-  if (typeof tsParticles === 'undefined') return;
+  'use strict';
 
-  tsParticles.load('tsparticles', {
-    fullScreen: { enable: true, zIndex: 0 },
-    background: { color: '#0a0a0a' },
-    fpsLimit: 60,
+  /* ═══════════════════════════════════════════════════════════════════════
+     Configuration — tweak these knobs to change the network behavior
+     ═══════════════════════════════════════════════════════════════════════ */
+  var CONFIG = {
+    particleCount: 70,
+    colors:         ['#00FFFF', '#FF1493', '#FFD700'],
+    minSize:        1,
+    maxSize:        4,
+    speed:          1.2,
+    linkDistance:   150,
+    linkColor:      'rgba(255, 255, 255, 0.25)',
+    linkWidth:      1.2,
+    repulseDistance: 120,
+    repulseStrength: 1.0,
+    pushCount:      4,
+    fps:            60
+  };
 
-    particles: {
-      number: {
-        value: 70,
-        density: { enable: true }
-      },
-      color: {
-        value: ['#00FFFF', '#FF1493', '#FFD700']
-      },
-      shape: {
-        type: 'circle'
-      },
-      opacity: {
-        value: { min: 0.3, max: 0.8 }
-      },
-      size: {
-        value: { min: 1, max: 4 }
-      },
-      links: {
-        enable: true,
-        distance: 150,
-        color: '#ffffff',
-        opacity: 0.25,
-        width: 1.2
-      },
-      move: {
-        enable: true,
-        speed: 1.2,
-        direction: 'none',
-        random: true,
-        straight: false,
-        outModes: { default: 'out' }
+  /* ═══════════════════════════════════════════════════════════════════════
+     Particle class — one node in the constellation
+     ═══════════════════════════════════════════════════════════════════════ */
+  function Particle(canvas) {
+    this.canvas = canvas;
+    this.reset(true);
+  }
+
+  Particle.prototype.reset = function(randomPos) {
+    if (randomPos) {
+      this.x = Math.random() * this.canvas.width;
+      this.y = Math.random() * this.canvas.height;
+    }
+    this.vx = (Math.random() - 0.5) * CONFIG.speed * 2;
+    this.vy = (Math.random() - 0.5) * CONFIG.speed * 2;
+    this.size = CONFIG.minSize + Math.random() * (CONFIG.maxSize - CONFIG.minSize);
+    this.color = CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)];
+    this.opacity = 0.3 + Math.random() * 0.5;
+  };
+
+  Particle.prototype.update = function(mouse) {
+    /* ── Apply velocity ──────────────────────────────────────────────── */
+    this.x += this.vx;
+    this.y += this.vy;
+
+    /* ── Mouse repulse ───────────────────────────────────────────────── */
+    if (mouse && mouse.active) {
+      var dx = this.x - mouse.x;
+      var dy = this.y - mouse.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < CONFIG.repulseDistance && dist > 0.1) {
+        var force = (CONFIG.repulseDistance - dist) / CONFIG.repulseDistance * CONFIG.repulseStrength;
+        this.vx += (dx / dist) * force * 0.5;
+        this.vy += (dy / dist) * force * 0.5;
       }
-    },
+    }
 
-    interactivity: {
-      detectsOn: 'window',
-      events: {
-        onHover: { enable: true, mode: 'repulse' },
-        onClick: { enable: true, mode: 'push' }
-      },
-      modes: {
-        repulse: { distance: 120, duration: 0.4, speed: 1 },
-        push:   { quantity: 4 }
+    /* ── Velocity damping ────────────────────────────────────────────── */
+    this.vx *= 0.995;
+    this.vy *= 0.995;
+
+    /* ── Toroidal wrap (Pac-Man edges) ───────────────────────────────── */
+    if (this.x < -10) this.x = this.canvas.width + 10;
+    if (this.x > this.canvas.width + 10) this.x = -10;
+    if (this.y < -10) this.y = this.canvas.height + 10;
+    if (this.y > this.canvas.height + 10) this.y = -10;
+  };
+
+  Particle.prototype.draw = function(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.opacity;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Main constellation engine
+     ═══════════════════════════════════════════════════════════════════════ */
+  function Constellation() {
+    this.canvas = null;
+    this.ctx = null;
+    this.particles = [];
+    this.mouse = { x: null, y: null, active: false };
+    this.animationId = null;
+    this.lastFrameTime = 0;
+    this.frameInterval = 1000 / CONFIG.fps;
+    this.init();
+  }
+
+  Constellation.prototype.init = function() {
+    /* ── Create full-screen canvas ──────────────────────────────────── */
+    this.canvas = document.createElement('canvas');
+    this.canvas.id = 'constellation-canvas';
+    this.canvas.style.cssText =
+      'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
+    document.body.insertBefore(this.canvas, document.body.firstChild);
+    this.ctx = this.canvas.getContext('2d');
+
+    /* ── Size canvas ────────────────────────────────────────────────── */
+    this.resize();
+    window.addEventListener('resize', this.resize.bind(this), { passive: true });
+
+    /* ── Create particles ───────────────────────────────────────────── */
+    for (var i = 0; i < CONFIG.particleCount; i++) {
+      this.particles.push(new Particle(this.canvas));
+    }
+
+    /* ── Mouse tracking ─────────────────────────────────────────────── */
+    var self = this;
+    document.addEventListener('mousemove', function(e) {
+      self.mouse.x = e.clientX;
+      self.mouse.y = e.clientY;
+      self.mouse.active = true;
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function() {
+      self.mouse.active = false;
+    });
+
+    /* ── Click to push particles ────────────────────────────────────── */
+    document.addEventListener('click', function(e) {
+      var added = 0;
+      for (var i = 0; i < CONFIG.pushCount; i++) {
+        var p = new Particle(self.canvas);
+        p.x = e.clientX;
+        p.y = e.clientY;
+        self.particles.push(p);
+        added++;
       }
-    },
+      /* Trim if too many */
+      while (self.particles.length > CONFIG.particleCount * 2) {
+        self.particles.shift();
+      }
+    });
 
-    detectRetina: true
-  });
+    /* ── Start render loop ──────────────────────────────────────────── */
+    this.animate();
+  };
+
+  Constellation.prototype.resize = function() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  };
+
+  Constellation.prototype.animate = function(timestamp) {
+    var self = this;
+    this.animationId = requestAnimationFrame(function(ts) { self.animate(ts); });
+
+    /* Frame rate cap */
+    if (!timestamp) timestamp = performance.now();
+    var elapsed = timestamp - this.lastFrameTime;
+    if (elapsed < this.frameInterval) return;
+    this.lastFrameTime = timestamp - (elapsed % this.frameInterval);
+
+    /* ── Clear ──────────────────────────────────────────────────────── */
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    /* ── Update + draw particles ────────────────────────────────────── */
+    for (var i = 0; i < this.particles.length; i++) {
+      this.particles[i].update(this.mouse);
+      this.particles[i].draw(this.ctx);
+    }
+
+    /* ── Draw links ─────────────────────────────────────────────────── */
+    this.ctx.strokeStyle = CONFIG.linkColor;
+    this.ctx.lineWidth = CONFIG.linkWidth;
+    for (var a = 0; a < this.particles.length; a++) {
+      for (var b = a + 1; b < this.particles.length; b++) {
+        var pa = this.particles[a];
+        var pb = this.particles[b];
+        var dx = pa.x - pb.x;
+        var dy = pa.y - pb.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONFIG.linkDistance) {
+          this.ctx.globalAlpha = (1 - dist / CONFIG.linkDistance) * 0.25;
+          this.ctx.beginPath();
+          this.ctx.moveTo(pa.x, pa.y);
+          this.ctx.lineTo(pb.x, pb.y);
+          this.ctx.stroke();
+        }
+      }
+    }
+    this.ctx.globalAlpha = 1;
+  };
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Boot
+     ═══════════════════════════════════════════════════════════════════════ */
+  new Constellation();
 }());
 
-/* ── Nav glass on scroll ──────────────────────────── */
+/* ── Nav glass on scroll ────────────────────────────────────────────────── */
 (function() {
   var nav = document.getElementById('nav');
   if (!nav) return;
@@ -76,7 +212,7 @@
   }, { passive: true });
 }());
 
-/* ── Scroll reveal ────────────────────────────────── */
+/* ── Scroll reveal ──────────────────────────────────────────────────────── */
 (function() {
   if (typeof IntersectionObserver === 'undefined') return;
   var targets = document.querySelectorAll('#first .features li, #second .content, #cta .major, #footer section');

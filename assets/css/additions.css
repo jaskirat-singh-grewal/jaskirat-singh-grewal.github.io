@@ -9,8 +9,8 @@ body {
   background-image: none !important;
 }
 
-/* ── Particles canvas ──────────────────────────────────────────────────── */
-canvas.tsParticles-canvas-el {
+/* ── Constellation canvas ──────────────────────────────────────────────── */
+#constellation-canvas {
   pointer-events: none !important;
 }
 
