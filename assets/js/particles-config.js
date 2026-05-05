@@ -18,8 +18,9 @@
     linkDistance:   150,
     linkColor:      'rgba(255, 255, 255, 0.25)',
     linkWidth:      1.2,
-    repulseDistance: 120,
-    repulseStrength: 1.0,
+    repulseDistance: 0,       // disabled — cursor attracts lines, not repulse
+    repulseStrength: 0,
+    cursorLinkDistance: 120,  // distance at which cursor connects to particles
     pushCount:      4,
     fps:            60
   };
@@ -48,18 +49,6 @@
     /* ── Apply velocity ──────────────────────────────────────────────── */
     this.x += this.vx;
     this.y += this.vy;
-
-    /* ── Mouse repulse ───────────────────────────────────────────────── */
-    if (mouse && mouse.active) {
-      var dx = this.x - mouse.x;
-      var dy = this.y - mouse.y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < CONFIG.repulseDistance && dist > 0.1) {
-        var force = (CONFIG.repulseDistance - dist) / CONFIG.repulseDistance * CONFIG.repulseStrength;
-        this.vx += (dx / dist) * force * 0.5;
-        this.vy += (dy / dist) * force * 0.5;
-      }
-    }
 
     /* ── Velocity damping ────────────────────────────────────────────── */
     this.vx *= 0.995;
@@ -189,6 +178,26 @@
       }
     }
     this.ctx.globalAlpha = 1;
+
+    /* ── Cursor tether ───────────────────────────────────────────────── */
+    if (this.mouse.active) {
+      this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+      this.ctx.lineWidth = 1.5;
+      for (var i = 0; i < this.particles.length; i++) {
+        var p = this.particles[i];
+        var dx = p.x - this.mouse.x;
+        var dy = p.y - this.mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONFIG.cursorLinkDistance) {
+          this.ctx.globalAlpha = (1 - dist / CONFIG.cursorLinkDistance) * 0.45;
+          this.ctx.beginPath();
+          this.ctx.moveTo(p.x, p.y);
+          this.ctx.lineTo(this.mouse.x, this.mouse.y);
+          this.ctx.stroke();
+        }
+      }
+      this.ctx.globalAlpha = 1;
+    }
   };
 
   /* ═══════════════════════════════════════════════════════════════════════
