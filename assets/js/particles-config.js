@@ -1,7 +1,7 @@
 /**
  * constellation-network.js — Pure vanilla particle constellation background
- * Zero dependencies. Dark-mode multi-colored node network with interactivity.
- * Colors: cyan #00FFFF, hot pink #FF1493, gold #FFD700
+ * Zero dependencies. Dark-mode gold particle network with interactivity.
+ * Colors: gold palette #FFD700, #FFE44D, #FFF1A0, #FFCC00
  */
 (function() {
   'use strict';
@@ -10,17 +10,17 @@
      Configuration — tweak these knobs to change the network behavior
      ═══════════════════════════════════════════════════════════════════════ */
   var CONFIG = {
-    particleCount: 70,
-    colors:         ['#00FFFF', '#FF1493', '#FFD700'],
+    particleCount: 80,
+    colors:         ['#FFD700', '#FFE44D', '#FFF1A0', '#FFCC00'],
     minSize:        1,
     maxSize:        4,
     speed:          1.2,
     linkDistance:   150,
-    linkColor:      'rgba(255, 255, 255, 0.25)',
+    linkColor:      'rgba(255, 215, 0, 0.30)',
     linkWidth:      1.2,
     repulseDistance: 0,       // disabled — cursor attracts lines, not repulse
     repulseStrength: 0,
-    cursorLinkDistance: 120,  // distance at which cursor connects to particles
+    cursorLinkDistance: 280,  // distance at which cursor connects to particles
     pushCount:      4,
     fps:            60
   };
@@ -50,9 +50,24 @@
     this.x += this.vx;
     this.y += this.vy;
 
-    /* ── Velocity damping ────────────────────────────────────────────── */
-    this.vx *= 0.995;
-    this.vy *= 0.995;
+    /* ── Constant speed normalization ───────────────────────────────── */
+    var currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+    if (currentSpeed > 0) {
+      this.vx = (this.vx / currentSpeed) * CONFIG.speed;
+      this.vy = (this.vy / currentSpeed) * CONFIG.speed;
+    }
+
+    /* ── Gentle cursor push/attraction ─────────────────────────────── */
+    if (mouse.active) {
+      var dmx = this.x - mouse.x;
+      var dmy = this.y - mouse.y;
+      var dm = Math.sqrt(dmx * dmx + dmy * dmy);
+      if (dm < 200 && dm > 0) {
+        var force = (1 - dm / 200) * 0.15;
+        this.vx += (dmx / dm) * force;
+        this.vy += (dmy / dm) * force;
+      }
+    }
 
     /* ── Toroidal wrap (Pac-Man edges) ───────────────────────────────── */
     if (this.x < -10) this.x = this.canvas.width + 10;
@@ -181,7 +196,7 @@
 
     /* ── Cursor tether ───────────────────────────────────────────────── */
     if (this.mouse.active) {
-      this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+      this.ctx.strokeStyle = 'rgba(255, 215, 0, 0.50)';
       this.ctx.lineWidth = 1.5;
       for (var i = 0; i < this.particles.length; i++) {
         var p = this.particles[i];

@@ -4,8 +4,8 @@
 		<title>Jaskirat Singh Grewal - Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css?v=2" />
-		<link rel="stylesheet" href="assets/css/additions.css?v=2" />
+<link rel="stylesheet" href="assets/css/main.css?v=3" />
+		<link rel="stylesheet" href="assets/css/additions.css?v=3" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -134,7 +134,7 @@
 
 			</div>
 
-		<script src="assets/js/particles-config.js?v=5"></script>
+		<script src="assets/js/particles-config.js?v=6"></script>
 		<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -142,6 +142,14 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+<script>
+(function() {
+  document.addEventListener('mousemove', function(e) {
+    document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--my', e.clientY + 'px');
+  });
+}());
+</script>
 
 	</body>
 </html>

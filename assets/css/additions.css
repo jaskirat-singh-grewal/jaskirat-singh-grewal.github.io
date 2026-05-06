@@ -5,7 +5,7 @@
 
 /* ── Dark background override ──────────────────────────────────────────── */
 body {
-  background: #0a0a0a !important;
+  background: #050505 !important;
   background-image: none !important;
 }
 
@@ -32,8 +32,8 @@ body {
   font-size: clamp(2em, 5vw, 3.2em);
   letter-spacing: 0.04em;
   text-shadow:
-    0 0 24px rgba(227, 118, 130, 0.55),
-    0 0 48px rgba(95,  77, 147, 0.35),
+    0 0 24px rgba(255, 215, 0, 0.55),
+    0 0 48px rgba(184, 150, 15, 0.35),
     0 2px  6px rgba(0,   0,   0, 0.45);
 }
 
@@ -49,13 +49,13 @@ body {
 @keyframes glow-breathe {
   0%, 100% {
     filter:
-      drop-shadow(0 0 16px rgba(227, 118, 130, 0.55))
-      drop-shadow(0 0 32px rgba(95,  77, 147, 0.35));
+      drop-shadow(0 0 16px rgba(255, 215, 0, 0.55))
+      drop-shadow(0 0 32px rgba(184, 150, 15, 0.35));
   }
   50% {
     filter:
-      drop-shadow(0 0 28px rgba(227, 118, 130, 0.80))
-      drop-shadow(0 0 54px rgba(95,  77, 147, 0.55));
+      drop-shadow(0 0 28px rgba(255, 215, 0, 0.80))
+      drop-shadow(0 0 54px rgba(184, 150, 15, 0.55));
   }
 }
 #header .logo img {
@@ -71,8 +71,8 @@ body {
   inset: -28px;
   background: radial-gradient(
     ellipse at center,
-    rgba(227, 118, 130, 0.28)  0%,
-    rgba(95,  77, 147, 0.18)  55%,
+    rgba(255, 215, 0, 0.28)  0%,
+    rgba(184, 150, 15, 0.18)  55%,
     transparent               72%
   );
   border-radius: 50%;
@@ -86,7 +86,7 @@ body {
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 #nav.nav-scrolled {
-  background: rgba(18, 16, 36, 0.78) !important;
+  background: rgba(10, 10, 10, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
@@ -100,8 +100,8 @@ body {
 #intro .spotlight .image img {
   animation: float-bob 5s ease-in-out infinite;
   box-shadow:
-    0 10px 36px rgba(95,  77, 147, 0.42),
-    0  3px 10px rgba(227, 118, 130, 0.25);
+    0 10px 36px rgba(255, 215, 0, 0.42),
+    0  3px 10px rgba(184, 150, 15, 0.25);
 }
 
 /* ── Feature cards: hover lift & scale ────────────────────────────────── */
@@ -114,8 +114,8 @@ body {
 #first ul.features > li:hover {
   transform: scale(1.06) translateY(-5px);
   box-shadow:
-    0 14px 40px rgba(95,  77, 147, 0.32),
-    0  4px 14px rgba(227, 118, 130, 0.22);
+    0 14px 40px rgba(184, 150, 15, 0.32),
+    0  4px 14px rgba(255, 215, 0, 0.22);
 }
 
 /* ── Section gradient dividers ────────────────────────────────────────── */
@@ -128,8 +128,8 @@ body {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(227, 118, 130, 0.35) 30%,
-    rgba(95,  77, 147, 0.35)  70%,
+    rgba(255, 215, 0, 0.35) 30%,
+    rgba(184, 150, 15, 0.35)  70%,
     transparent
   );
 }
@@ -144,3 +144,142 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dark Theme Overrides
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Main content area ─────────────────────────────────────────────────── */
+#main { background-color: #0a0a0a !important; color: rgba(255, 255, 255, 0.85) !important; border: 1px solid rgba(255, 255, 255, 0.06) !important; border-radius: 12px !important; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.50) !important; }
+#main strong, #main b, #main h1, #main h2, #main h3, #main h4, #main h5, #main h6 { color: #ffffff !important; }
+#main a { color: #FFCC00 !important; }
+#main a:hover { color: #FFE066 !important; }
+#main hr { border-bottom-color: rgba(255, 255, 255, 0.08) !important; }
+#main > .main { border-top-color: rgba(255, 255, 255, 0.06) !important; }
+#main header.major h2:after { background-image: linear-gradient(90deg, #FFD700, #FFE44D, #B8960F) !important; }
+#main .icon.major { border-color: rgba(255, 215, 0, 0.20) !important; }
+#main .icon.major:before { border-color: rgba(255, 215, 0, 0.20) !important; }
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+#main .button { background-color: transparent !important; box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.30) !important; color: #FFD700 !important; }
+#main .button:hover { background-color: rgba(255, 215, 0, 0.08) !important; box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.50), 0 0 20px rgba(255, 215, 0, 0.10) !important; }
+#main .button.primary { background-color: #FFD700 !important; color: #050505 !important; box-shadow: 0 0 20px rgba(255, 215, 0, 0.15) !important; }
+#main .button.primary:hover { background-color: #FFE44D !important; }
+
+/* ── Nav ───────────────────────────────────────────────────────────────── */
+#nav { background-color: rgba(10, 10, 10, 0.90) !important; color: rgba(255, 255, 255, 0.70) !important; }
+#nav a:hover { color: #FFD700 !important; }
+#nav strong, #nav b, #nav h1, #nav h2, #nav h3 { color: #ffffff !important; }
+#nav ul li a.active { background-color: rgba(255, 215, 0, 0.12) !important; color: #FFD700 !important; }
+#nav.nav-scrolled { background: rgba(10, 10, 10, 0.85) !important; }
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+#footer { background-color: #050505 !important; color: rgba(255, 255, 255, 0.70) !important; }
+#footer h2 { color: #ffffff !important; }
+#footer a { color: #FFCC00 !important; }
+#footer a:hover { color: #FFE066 !important; }
+#footer dl dt { color: #ffffff !important; }
+#footer .copyright { color: rgba(255, 255, 255, 0.40) !important; }
+
+/* ── Feature cards ─────────────────────────────────────────────────────── */
+#first ul.features > li { background: #0d0d0d !important; border: 1px solid rgba(255, 255, 255, 0.06) !important; border-radius: 12px !important; padding: 2em !important; }
+#first ul.features > li:hover { background: #141414 !important; border-color: rgba(255, 215, 0, 0.15) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.40), 0 0 20px rgba(255,215,0,0.06) !important; }
+#first ul.features > li h3 { color: #FFD700 !important; }
+#first ul.features > li p { color: rgba(255, 255, 255, 0.70) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Creative UI Enhancements
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Typography upgrade ────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+body, input, select, textarea {
+  font-family: 'Inter', 'Source Sans Pro', Helvetica, sans-serif !important;
+}
+
+/* ── Hero header: gold gradient text ───────────────────────────────────── */
+#header {
+  position: relative;
+  overflow: hidden;
+}
+#header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+#header h1 {
+  background: linear-gradient(135deg, #FFE44D 0%, #FFD700 50%, #B8960F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#header p {
+  color: rgba(255, 255, 255, 0.65) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+/* ── Gold accent line on feature cards hover ───────────────────────────── */
+#first ul.features > li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#first ul.features > li:hover::before {
+  opacity: 1;
+}
+
+/* ── Cursor gold glow on #main ─────────────────────────────────────────── */
+#main::before {
+  content: '';
+  position: fixed;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+#main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Contact section gold gradient overlay ─────────────────────────────── */
+#cta {
+  position: relative;
+}
+#cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.03), transparent, rgba(255, 215, 0, 0.02));
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Gold scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: rgba(255, 215, 0, 0.20); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 215, 0, 0.35); }
+
+/* ── Smooth transitions ────────────────────────────────────────────────── */
+a, button, .button { transition: all 0.3s ease !important; }
